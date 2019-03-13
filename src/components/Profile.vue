@@ -8,6 +8,7 @@
             <h3>{{ user.name }}</h3>
             <p>What's your story in one line?<a-icon type="edit" /></p>
             <a-button block>Preview Public Mode</a-button>
+            <div class="main-info-status">- Online</div>
           </div>
           <div class="profile-secondary-info">
             <div class="secondary-info-item">
@@ -37,7 +38,7 @@
         <div class="left-profile mb-5">
           <div class="brand-logo"></div>
           <h4>Boost your sales, by boosting your expertise.</h4>
-          <a-button type="primary" block>Primary</a-button>
+          <a-button type="primary" block>Enroll Now</a-button>
         </div>
 
         <div class="left-profile">
@@ -111,7 +112,7 @@
       <a-col :span="14" :offset="2">
         <div class="right-profile">
           <div class="right-profile-header">
-
+            More content
           </div>
         </div>
       </a-col>
@@ -127,7 +128,8 @@ export default {
     ...mapGetters(['user'])
   },
   mounted() {
-    console.log(this.user);
+    this.$Progress.start();
+    setTimeout(() => this.$Progress.finish(), 1000);
   }
 }
 </script>
@@ -142,23 +144,33 @@ export default {
   margin-bottom: 50px;
 }
 .left-profile {
-  position: relative;
   height: auto;
   background-color: #fff;
   border: 1px solid #ddd;
   padding: 20px 30px;
   font-size: 14px;
   line-height: 130%;
+  border-radius: 3px;
 }
 .profile-main-info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .profile-main-info h3 {
   margin: 10px 0;
 }
-
+.main-info-status {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: 1px solid #1dbf73;
+  border-radius: 10px;
+  color: #1dbf73;
+  padding: 2px 8px;
+  text-transform: capitalize;
+}
 .profile-secondary-info {
   margin: 20px 0;
   border-top: solid 1px #ddd;

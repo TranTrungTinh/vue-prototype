@@ -1,8 +1,6 @@
 <template>
   <a-layout id="components-layout-demo-custom-trigger">
     <a-layout-sider
-      :trigger="null"
-      collapsible
       v-model="collapsed"
     >
       <div class="logo" />
@@ -28,14 +26,16 @@
           <a-col :span="12">
             <div class="header-user">
               <div v-if="user.name">
-                <a-avatar src="https://randomuser.me/api/portraits/women/12.jpg" />
-                <span class="header-user-name">{{ user.name }}</span>
+                <span>
+                  <!-- <a-avatar src="https://randomuser.me/api/portraits/women/12.jpg" @click="openProfilePopup"/> -->
+                  <profile-popup />
+                  <span class="header-user-name">{{ user.name }}</span>
+                </span>
                 <a-badge count="5">
-                  <span class="fs-24" @click="openNotify">
-                    <a-icon type="bell" theme="filled" />
+                  <span class="fs-24">
+                    <notification />
                   </span>
                 </a-badge>
-                <notification ref="notify" />
                 <span class="header-icon fs-24"><a-icon type="setting" /></span>
               </div>
               <a-icon type="loading" v-else/>
@@ -46,6 +46,8 @@
       </a-layout-header>
       <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
         <router-view />
+        <!-- set progressbar -->
+        <vue-progress-bar></vue-progress-bar>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -53,6 +55,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import Notification from './components/popup/Notification';
+import ProfilePopup from './components/popup/ProfilePopup';
 
 export default {
   data() {
@@ -72,12 +75,9 @@ export default {
     this.$store.dispatch('getUser');
   },
   methods: {
-    openNotify() {
-      this.$refs.notify.open();
-    }
   },
   components: {
-    Notification
+    Notification, ProfilePopup
   }
   
 }

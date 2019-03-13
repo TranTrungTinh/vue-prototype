@@ -50,8 +50,10 @@ export default {
     }
   },
   mounted () {
+    this.$Progress.start();
     setTimeout(() => {
       this.firstFetchTasks();
+      this.$Progress.finish();
     }, 1000);
   },
   computed: {

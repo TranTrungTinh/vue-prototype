@@ -31,6 +31,7 @@
             </span>
         </div>
     </div>
+    <a-icon type="bell" theme="filled" @click="open"/>
   </a-popover>
 </template>
 
