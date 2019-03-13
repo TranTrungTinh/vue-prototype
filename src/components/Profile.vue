@@ -1,4 +1,5 @@
 <template>
+<a-spin :spinning="loading" :indicator="indicator">
   <div class="profile">
     <a-row>
       <a-col :span="8">
@@ -118,18 +119,28 @@
       </a-col>
     </a-row>
   </div>
+</a-spin>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 
 export default {
+  data () {
+    return {
+      loading: true,
+      indicator: <a-icon type="loading" style="font-size: 24px" spin />
+    }
+  },
   computed: {
     ...mapGetters(['user'])
   },
   mounted() {
     this.$Progress.start();
-    setTimeout(() => this.$Progress.finish(), 1000);
+    setTimeout(() => {
+      this.$Progress.finish();
+      this.loading = false;
+      }, 1000);
   }
 }
 </script>

@@ -44,7 +44,21 @@
         </a-row>
         
       </a-layout-header>
-      <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
+
+      <a-layout :style="{ margin: '10px 16px', padding: '24px', background: '#fff', maxHeight: '70px' }">
+        <a-breadcrumb separator=">">
+          <a-breadcrumb-item>Home</a-breadcrumb-item>
+          <a-breadcrumb-item>
+            <router-link to="/profile">Profile</router-link>
+          </a-breadcrumb-item>
+          <a-breadcrumb-item>
+            <router-link to="/dashboard">Dashboard</router-link>
+          </a-breadcrumb-item>
+          <a-breadcrumb-item>An Application</a-breadcrumb-item>
+        </a-breadcrumb>
+      </a-layout>
+
+      <a-layout-content :style="{ margin: '16px', padding: '24px', background: '#fff' }">
         <router-view />
         <!-- set progressbar -->
         <vue-progress-bar></vue-progress-bar>
@@ -85,7 +99,6 @@ export default {
 <style>
 #components-layout-demo-custom-trigger {
   min-height: 100%;
-  max-height: 500%;
   height: auto;
 }
 #components-layout-demo-custom-trigger .trigger {

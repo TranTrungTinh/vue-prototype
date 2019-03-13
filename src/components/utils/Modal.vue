@@ -78,7 +78,6 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
           this.closeModal();
           this.$store.dispatch('doneTask', this.task);
         }

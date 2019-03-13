@@ -34,7 +34,7 @@ const mutations =  {
 
 const actions = {
     getUser: ({ commit }) => {
-        axios.get('https://jsonplaceholder.typicode.com/users/4')
+        axios.get('https://jsonplaceholder.typicode.com/users/9')
         .then(({ data }) => commit('setUser', data))
         .catch(err => console.log(err))
     },
