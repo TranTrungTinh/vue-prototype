@@ -27,9 +27,16 @@
           </a-col>
           <a-col :span="12">
             <div class="header-user">
-              <div v-if="user.username">
-                <span>Hello <span class="header-user-name">{{ user.username }}</span></span>
+              <div v-if="user.name">
                 <a-avatar src="https://randomuser.me/api/portraits/women/12.jpg" />
+                <span class="header-user-name">{{ user.name }}</span>
+                <a-badge count="5">
+                  <span class="fs-24" @click="openNotify">
+                    <a-icon type="bell" theme="filled" />
+                  </span>
+                </a-badge>
+                <notification ref="notify" />
+                <span class="header-icon fs-24"><a-icon type="setting" /></span>
               </div>
               <a-icon type="loading" v-else/>
             </div>
@@ -45,6 +52,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import Notification from './components/popup/Notification';
 
 export default {
   data() {
@@ -62,13 +70,23 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getUser');
+  },
+  methods: {
+    openNotify() {
+      this.$refs.notify.open();
+    }
+  },
+  components: {
+    Notification
   }
   
 }
 </script>
 <style>
 #components-layout-demo-custom-trigger {
-  height: 100%;
+  min-height: 100%;
+  max-height: 500%;
+  height: auto;
 }
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
@@ -92,7 +110,14 @@ export default {
   padding: 0 20px;
 }
 .header-user-name {
-  padding-right: 15px;
+  padding: 0 15px;
   font-weight: 600;
+}
+.header-icon {
+  padding: 0 15px;
+}
+.fs-24 {
+  font-size: 22px;
+  cursor: pointer;
 }
 </style>

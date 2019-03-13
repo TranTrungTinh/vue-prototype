@@ -10,11 +10,14 @@
     >
       
       <a-list-item slot="renderItem" slot-scope="item" key="item.id">
-        <a-list-item-meta :description="item.title">
-          <a-avatar slot="avatar" src="https://privat.starlaeducation.com/content/uploads/2017/05/RPP-Starla-1.png" />
+        <a-list-item-meta :description="item.title" class="task-messages">
+          <!-- <a-avatar slot="avatar" src="https://privat.starlaeducation.com/content/uploads/2017/05/RPP-Starla-1.png" /> -->
         </a-list-item-meta>
         <div>
             <a-button v-if="item.isFile" type="primary" icon="download" size="small">Download</a-button>
+            <span class="task-tag">
+              <a-tag color="#87d068">Pending</a-tag>
+            </span>
         </div>
 
         <a-popconfirm slot="actions" title="Are you sure pickup this task?" @confirm="confirm(item)" okText="Yes" cancelText="No">
@@ -72,6 +75,7 @@ export default {
     },
     confirm (task) {
       this.$store.dispatch('pickupTask', task);
+      this.$message.success('A task pickup successfully');
     }
   },
   components: {
@@ -82,5 +86,11 @@ export default {
 <style>
 .demo-loadmore-list {
   min-height: 350px;
+}
+.task-messages {
+  color: black;
+}
+.task-tag {
+  padding: 0 0 0 30px;
 }
 </style>

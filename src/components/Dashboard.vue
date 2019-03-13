@@ -25,7 +25,7 @@
   <div class="dashboard-tabs">
     <a-tabs defaultActiveKey="1">
       <a-tab-pane tab="Available Tasks" key="1"><tasks /></a-tab-pane>
-      <a-tab-pane tab="My Pickup Tasks" key="2"><todo-tasks /></a-tab-pane>
+      <a-tab-pane tab="Your Tasks" key="2"><todo-tasks /></a-tab-pane>
       <a-tab-pane tab="Complete Tasks" key="3"><complete-tasks /></a-tab-pane>
     </a-tabs>
   </div>

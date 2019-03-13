@@ -11,10 +11,13 @@
       
       <a-list-item slot="renderItem" slot-scope="item" key="item.id">
         <a-list-item-meta :description="item.title">
-          <a-avatar slot="avatar" src="https://privat.starlaeducation.com/content/uploads/2017/05/RPP-Starla-1.png" />
+          <!-- <a-avatar slot="avatar" src="https://privat.starlaeducation.com/content/uploads/2017/05/RPP-Starla-1.png" /> -->
         </a-list-item-meta>
         <div>
             <a-button v-if="item.isFile" type="primary" icon="download" size="small">Download</a-button>
+            <span class="task-tag">
+              <a-tag color="#f50">Complete</a-tag>
+            </span>
         </div>
       </a-list-item>
     </a-list>
