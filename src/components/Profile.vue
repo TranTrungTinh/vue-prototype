@@ -9,7 +9,7 @@
             <h3>{{ user.name }}</h3>
             <p>What's your story in one line?<a-icon type="edit" /></p>
             <a-button block>Preview Public Mode</a-button>
-            <div class="main-info-status">- Online</div>
+            <div class="main-info-status"><span class="circle-point"></span>Online</div>
           </div>
           <div class="profile-secondary-info">
             <div class="secondary-info-item">
@@ -181,7 +181,20 @@ export default {
   color: #1dbf73;
   padding: 2px 8px;
   text-transform: capitalize;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
+.circle-point {
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #1dbf73;
+  margin-right: 5px;
+  width: 7px;
+  height: 7px;
+}
+
 .profile-secondary-info {
   margin: 20px 0;
   border-top: solid 1px #ddd;

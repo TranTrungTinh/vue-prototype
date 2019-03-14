@@ -20,11 +20,19 @@
             </span>
         </div>
 
-        <a-popconfirm slot="actions" title="Are you sure pickup this task?" @confirm="confirm(item)" okText="Yes" cancelText="No">
-          <a href="#">Pickup a task</a>
+        <a slot="actions" v-if="isAdmin">
+          <span style="color: #e58e26">CANCEL</span> 
+        </a>
+        <a slot="actions" v-if="isAdmin">
+          <span style="color: #e84118">DELETE</span> 
+        </a>
+
+        <a-popconfirm v-if="!isAdmin" slot="actions" title="Are you sure pickup this task?" @confirm="confirm(item)" okText="Yes" cancelText="No">
+          <span style="color: #4834d4">Pickup a task</span> 
         </a-popconfirm>
-        
-        <a slot="actions" @click="showInfo(item)">Task info</a>
+        <a v-if="!isAdmin" slot="actions" @click="showInfo(item)">Task info</a>
+
+
       </a-list-item>
     </a-list>
 
@@ -40,6 +48,9 @@ import ShowInfo from '../utils/ShowInfo.vue';
 import { setTimeout } from 'timers';
 
 export default {
+  props: {
+    isAdmin: { type: Boolean, default: false }
+  },
   data () {
     return {
       loading: true,

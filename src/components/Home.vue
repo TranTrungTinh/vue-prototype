@@ -1,11 +1,15 @@
 <template>
   <div class="home">
-    Home
+    <admin-dashboard />
   </div>
 </template>
 
 <script>
+import AdminDashboard from './admin/Dashboard';
 
 export default {
+  components: {
+    AdminDashboard
+  }
 }
 </script>

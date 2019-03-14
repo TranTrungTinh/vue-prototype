@@ -1,7 +1,7 @@
 <template>
   <div id="components-modal-demo-position">
     <a-modal
-      title="Complete Task"
+      title="Delivery a task"
       centered
       v-model="modal"
       :footer="null"

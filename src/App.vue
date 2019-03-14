@@ -71,14 +71,14 @@ import { mapGetters } from 'vuex';
 import Notification from './components/popup/Notification';
 import ProfilePopup from './components/popup/ProfilePopup';
 
-export default {
+export default { 
   data() {
     return {
       collapsed: false,
       navSliders: [
-        {id: 1, icon: 'home', title: 'Home', link: "/"},
+        {id: 1, icon: 'home', title: 'Admin Dashboard', link: "/"},
         {id: 2, icon: 'user', title: 'Profile', link: "/profile"},
-        {id: 3, icon: 'dashboard', title: 'Dashboard', link: "/dashboard"},
+        {id: 3, icon: 'dashboard', title: 'Worker Dashboard', link: "/dashboard"},
       ]
     }
   },

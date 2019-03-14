@@ -10,7 +10,7 @@ import 'ant-design-vue/dist/antd.css';
 const options = {
   color: '#eb2f06',
   failedColor: '#44bd32',
-  thickness: '3px',
+  thickness: '2px',
   transition: {
     speed: '0.2s',
     opacity: '0.6s',

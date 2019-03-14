@@ -20,7 +20,7 @@
             </span>
         </div>
 
-        <a slot="actions" class="red" @click="showModal(item)">Task is complete</a>
+        <a slot="actions" class="red" @click="showModal(item)">Delivery a task</a>
         <a slot="actions" @click="showInfo(item)">Task info</a>
       </a-list-item>
     </a-list>
