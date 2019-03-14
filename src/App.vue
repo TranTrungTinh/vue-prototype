@@ -76,9 +76,10 @@ export default {
     return {
       collapsed: false,
       navSliders: [
-        {id: 1, icon: 'home', title: 'Admin Dashboard', link: "/"},
-        {id: 2, icon: 'user', title: 'Profile', link: "/profile"},
-        {id: 3, icon: 'dashboard', title: 'Worker Dashboard', link: "/dashboard"},
+        {id: 1, icon: 'pie-chart', title: 'Report', link: "/report"},
+        {id: 2, icon: 'home', title: 'Admin Dashboard', link: "/admin"},
+        {id: 3, icon: 'user', title: 'Profile', link: "/profile"},
+        {id: 4, icon: 'dashboard', title: 'Worker Dashboard', link: "/dashboard"},
       ]
     }
   },

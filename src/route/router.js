@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router';
 
 import Home from '../components/Home.vue';
+import Report from '../components/Report.vue';
 import Profile from '../components/Profile.vue';
 import Dashboard from '../components/Dashboard.vue';
 
@@ -13,7 +14,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/admin',
       name: 'home',
       component: Home
     },
@@ -26,6 +27,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile
+    },
+    {
+      path: '/report',
+      name: 'report',
+      component: Report
     }
   ]
 });
