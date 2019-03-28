@@ -1,6 +1,6 @@
 <template>
-  <a-layout-sider v-model="collapsed">
-    <div class="logo"/>
+  <a-layout-sider class="slider--destop" v-model="collapsed">
+    <div class="slider--destop__logo"/>
     <a-menu theme="dark" mode="inline" :defaultSelectedKeys="[1]">
       <a-menu-item v-for="item in showNavSliders" :key="item.id">
         <router-link :to="item.link">
@@ -36,7 +36,7 @@ export default {
           { id: 2, icon: 'user', title: 'Profile', link: '/app/profile' },
           { id: 3, icon: 'plus', title: 'Request', link: '/app/add-request' }
         ]
-      }
+      },
     }
   },
   computed: {
@@ -45,12 +45,22 @@ export default {
       return this.navSliders.worker
     }
   }
+  
 }
 </script>
-<style scoped>
-.logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+<style lang="scss" scoped>
+@import '@/styles/app.scss';
+.slider {
+  &--destop {
+    @include respond(phone) {
+      display: none;
+    }
+
+    &__logo {
+      height: 32px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 16px;
+    }
+  }
 }
 </style>

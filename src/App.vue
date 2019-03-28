@@ -51,6 +51,7 @@ export default {
 html {
     // This defines what 1rem is
     font-size: 100%; //1 rem = 10px; 10px/16px = 62.5%
+    scroll-behavior: smooth;
 
     @include respond(tab-land) { // width < 1200?
         font-size: 56.25%; //1 rem = 9px, 9/16 = 50%

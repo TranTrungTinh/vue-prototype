@@ -1,23 +1,55 @@
-.trigger:hover {
-  color: #1890ff;
-}
-.trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.header-user {
-  float: right;
-  padding: 0 20px;
-}
-.header-user-name {
-  padding: 0 15px;
-  font-weight: 600;
-}
-.header-icon {
-  padding: 0 15px;
+@import '@/styles/app.scss';
+
+.header {
+  background: #fff;
+  padding: 0;
+  
+  &-trigger--desktop {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #1890ff;
+    }
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  &-trigger--phone {
+    display: none;
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #1890ff;
+    }
+
+    @include respond(phone) {
+      display: inline-block;
+    }
+  }
+
+  &-user {
+    float: right;
+    padding: 0 20px;
+  }
+
+  &-user-name {
+    padding: 0 15px;
+    font-weight: 600;
+  }
+
+  &-icon {
+    padding: 0 15px;
+  }
 }
 .fs-24 {
   font-size: 22px;

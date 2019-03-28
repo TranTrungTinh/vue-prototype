@@ -1,14 +1,15 @@
 <template>
-  <a-layout-header style="background: #fff; padding: 0">
+  <a-layout-header class="header">
     <a-row>
-      <a-col :span="12">
-        <a-icon class="trigger" type="menu-unfold" @click="this.toggleCollaped"/>
+      <a-col :span="4">
+        <a-icon class="header-trigger--desktop" type="menu-unfold" @click="onToggle"/>
+        <a-icon class="header-trigger--phone" type="menu-unfold" @click="onDraw"/>
+        <drawer-left ref="drawer"/>
       </a-col>
-      <a-col :span="12">
+      <a-col :span="20">
         <div class="header-user">
           <div v-if="user">
             <span>
-              <!-- <a-avatar src="https://randomuser.me/api/portraits/women/12.jpg" @click="openProfilePopup"/> -->
               <profile-popup/>
               <span class="header-user-name">{{ user.username }}</span>
             </span>
@@ -32,8 +33,10 @@ import { mapGetters } from 'vuex'
 
 import Notification from './Notification.vue'
 import ProfilePopup from './ProfilePopup.vue'
+import DrawerLeft from './DrawerLeft.vue'
 
 export default {
+  components: { Notification, ProfilePopup, DrawerLeft },
   props: {
     toggleCollaped: { type: Function }
   },
@@ -48,7 +51,14 @@ export default {
       user: 'auth/currentUser'
     })
   },
-  components: { Notification, ProfilePopup }
+  methods: {
+    onToggle() {
+      this.toggleCollaped();
+    },
+    onDraw() {
+      this.$refs.drawer.showDrawer();
+    }
+  }
 }
 </script>
 <style src="./Header.scss" lang="scss" scoped></style>

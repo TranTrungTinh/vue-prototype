@@ -41,6 +41,9 @@ export default {
 
 .task-item {
     width: 100%;
+    @include respond(phone) {
+        padding: 0 10px 0 0;
+    }
 
     &--status {
         display: flex;
@@ -51,9 +54,6 @@ export default {
             margin: 15px 0;
         }
 
-        &__tag {
-           
-        }
     }
 
     &--action {
