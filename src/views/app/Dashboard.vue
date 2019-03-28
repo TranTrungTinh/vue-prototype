@@ -81,6 +81,7 @@ export default {
 
   &--search {
     width: 100%;
+    
     @include respond(phone) {
       margin: 15px 0;
     }
@@ -92,7 +93,6 @@ export default {
     }
 
     width: 200px;
-    max-width: 250px;
     float: right;
   }
 }
