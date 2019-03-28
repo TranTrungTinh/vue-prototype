@@ -1,4 +1,4 @@
-# prototype
+# vue-aws
 
 ## Project setup
 ```
@@ -27,3 +27,11 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+async signIn({ commit }, { username, password }) {
+      const user = await Auth.signIn(username, password);
+      const credentials = await Auth.currentCredentials();
+      console.log('Cognito identity ID:', credentials.identityId);
+      authenticate(commit, user);
+    },

@@ -5,105 +5,81 @@
       itemLayout="horizontal"
       size="large"
       :loading="loading"
-      :pagination="pagination"
-      :dataSource="getfilteredData"
+      :dataSource="data"
     >
-      
       <a-list-item slot="renderItem" slot-scope="item" key="item.id">
-        <a-list-item-meta :description="item.title" class="task-messages">
-          <!-- <a-avatar slot="avatar" src="https://privat.starlaeducation.com/content/uploads/2017/05/RPP-Starla-1.png" /> -->
-        </a-list-item-meta>
-        <div>
-            <a-button v-if="item.isFile" type="primary" icon="download" size="small">Download</a-button>
-            <span class="task-tag">
-              <a-tag color="#87d068">Pending</a-tag>
-            </span>
-        </div>
-
-        <a slot="actions" v-if="isAdmin">
-          <span style="color: #e58e26">CANCEL</span> 
-        </a>
-        <a slot="actions" v-if="isAdmin">
-          <span style="color: #e84118">DELETE</span> 
-        </a>
-
-        <a-popconfirm v-if="!isAdmin" slot="actions" title="Are you sure pickup this task?" @confirm="confirm(item)" okText="Yes" cancelText="No">
-          <span style="color: #4834d4">Pickup a task</span> 
-        </a-popconfirm>
-        <a v-if="!isAdmin" slot="actions" @click="showInfo(item)">Task info</a>
-
-
+        <item :item="item" :showInfoFunc="displayInfo" :showModal="showModal" :type="type"/>
       </a-list-item>
     </a-list>
-
     <div>
-      <show-info ref="showInfo" />
+      <show-info ref="showInfo"/>
+      <modal ref="showModal"/>
     </div>
-
   </a-row>
 </template>
 <script>
-import { mapGetters } from 'vuex';
-import ShowInfo from '../utils/ShowInfo.vue';
-import { setTimeout } from 'timers';
+import { mapActions } from 'vuex'
+import ShowInfo from './TaskInfo.vue'
+import Modal from './Modal.vue'
+import Item from './TaskItem.vue'
 
 export default {
   props: {
-    isAdmin: { type: Boolean, default: false }
+    isAdmin: { type: Boolean, default: false },
+    type: { type: String, default: 'new' }
   },
   data () {
     return {
-      loading: true,
-      data: [],
-      pagination: {
-        pageSize: 8,
+      loading: true
+    }
+  },
+  created () {
+    this.load()
+  },
+  computed: {
+    data () {
+      if (this.type === 'new') {
+        return this.$store.getters['tasks/newTasks']
+      } else if (this.type === 'todo') {
+        return this.$store.getters['tasks/todoTasks']
+      } else {
+        return this.$store.getters['tasks/completedTasks']
       }
     }
   },
-  mounted () {
-    this.$Progress.start();
-    setTimeout(() => {
-      this.firstFetchTasks();
-      this.$Progress.finish();
-    }, 1000);
-  },
-  computed: {
-    ...mapGetters(['filter']),
-    getfilteredData() {
-      return this.data.filter(item => {
-        return item.title.includes(this.filter.title.toLowerCase())
-      })
-    }
-  },
   methods: {
-    firstFetchTasks() {
-      this.$store.dispatch('getTasks')
-      .then(data => {
-        this.loading = false;
-        this.data = data;
-      })
+    ...mapActions({
+      get: 'tasks/get'
+    }),
+
+    displayInfo (dataItem) {
+      this.$refs.showInfo.showDrawer(dataItem)
     },
-    showInfo(dataItem) {
-      this.$refs.showInfo.showDrawer(dataItem);
+    showModal (task) {
+      this.$refs.showModal.openModal(task)
     },
-    confirm (task) {
-      this.$store.dispatch('pickupTask', task);
-      this.$message.success('A task pickup successfully');
+
+    // TODO make paging later. Wait Khanh-san tell how to paging with DynamoDB
+    load () {
+      this.loading = true
+
+      this.get({ type: this.type })
+        .then(() => (this.loading = false))
+        .catch(err => {
+          console.log(err)
+          this.$message.error('Load data failed, try again later.')
+        })
     }
   },
   components: {
-    ShowInfo
+    ShowInfo,
+    Item,
+    Modal
   }
 }
 </script>
 <style>
 .demo-loadmore-list {
   min-height: 350px;
-}
-.task-messages {
-  color: black;
-}
-.task-tag {
-  padding: 0 0 0 30px;
 }
 </style>

@@ -1,0 +1,25 @@
+.trigger:hover {
+  color: #1890ff;
+}
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.header-user {
+  float: right;
+  padding: 0 20px;
+}
+.header-user-name {
+  padding: 0 15px;
+  font-weight: 600;
+}
+.header-icon {
+  padding: 0 15px;
+}
+.fs-24 {
+  font-size: 22px;
+  cursor: pointer;
+}
